@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waktu Iqomah</title>
+    <link rel="stylesheet" href="style2.css" />
+  </head>
+  <body>
+    <div class="Ma in-1">
+      <h1 class="judul">MEMASUKI WAKTU IQOMAH</h1>
+      <div class="kotak">
+        <div class="kotak2">
+          <p class="tulisan" id="menit">00</p>
+        </div>
+        <div class="kotak2">
+          <p class="tulisan" id="detik">00</p>
+        </div>
+      </div>
+      <div>
+        <p class="tulisan-bawah">
+          Dari Abu Hurairah radhiyallahu 'anhu, Rasulullah shallallahu 'alaihi
+          wa sallam bersabda:
+          <br />
+          <br />
+          "Seandainya manusia mengetahui (keutamaan) dalam shalat berjamaah dan
+          shalat di masjid-masjid mereka, lalu tidak mendapati (cara lain)
+          kecuali berjalan ke masjid-masjid itu, niscaya mereka akan
+          melakukannya, dan seandainya mereka mengetahui (keutamaan) shalat
+          Shubuh dan Isya', niscaya mereka akan mendatanginya sekalipun dengan
+          merangkak." (HR. Bukhari dan Muslim)
+        </p>
+        <audio
+          id="countdownSound"
+          src="your-sound-file.mp3"
+          preload="auto"
+        ></audio>
+      </div>
+    </div>
+
+    <script>
+      // Fungsi untuk mengatur waktu hitung mundur
+      function startCountdown() {
+        let minutes = 0;
+        let seconds = 5;
+
+        let countdownInterval = setInterval(function () {
+          let minutesDisplay = minutes < 10 ? "0" + minutes : minutes;
+          let secondsDisplay = seconds < 10 ? "0" + seconds : seconds;
+
+          document.getElementById("menit").innerHTML = minutesDisplay;
+          document.getElementById("detik").innerHTML = secondsDisplay;
+
+          if (minutes === 0 && seconds === 5) {
+            const awal = new Audio("awal.wav");
+            awal.play();
+          } else if (minutes === 0 && seconds === 5) {
+            const akhir = new Audio("akhir.mp3");
+            akhir.play();
+          }
+
+          if (minutes === 0 && seconds === 0) {
+            clearInterval(countdownInterval);
+            window.location.replace("index.html");
+          } else {
+            if (seconds === 0) {
+              minutes--;
+              // Mainkan suara saat 5 detik terakhi
+              seconds = 59;
+            } else {
+              seconds--;
+            }
+          }
+        }, 1000);
+      }
+
+      window.onload = startCountdown;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Masjid Al-Qalam</title>
+    <script src="PrayTimes.js"></script>
+    <script src="jadwalSholat.js"></script>
+    <script src="Carousel.js"></script>
+  </head>
+  <body>
+    <div class="img" id="imgs">
+      <img src="./asset/FOTO.jpg" alt="" class="slide foto" />
+      <img src="./asset/FOTO2.jpg" alt="" class="slide foto" />
+      <img src="./asset/FOTO3.jpg" alt="" class="slide foto" />
+      <img src="./asset/FOTO4.jpg" alt="" class="slide foto" />
+    </div>
+    <div class="Main">
+      <div class="Header">
+        <div class="blk-1">
+          <img src="logo.png" alt="" class="IMG" />
+        </div>
+        <div class="blk-2">
+          <img src="Logo Masjid al Qolam putih.png" alt="" class="LOGO" />
+        </div>
+        <div class="blk-3">
+          <div class="JAM" id="clock"></div>
+        </div>
+      </div>
+      <div class="TGL">
+        <div></div>
+        <div></div>
+      </div>
+
+      <div class="Isi">
+        <div class="Isi-1"></div>
+        <div class="Isi-2"></div>
+      </div>
+      <img src="./moving icon/img/subuh.png" alt="" class="anicon1" />
+      <img src="./moving icon/img/syuruq.png" alt="" class="anicon2" />
+      <img src="./moving icon/img/zuhur.png" alt="" class="anicon3" />
+      <img src="./moving icon/img/ashar.png" alt="" class="anicon4" />
+      <img src="./moving icon/img/magrib.png" alt="" class="anicon5" />
+      <img src="./moving icon/img/isya.png" alt="" class="anicon6" />
+      <div class="A-Footer">
+        <div class="grid-item satu">SUBUH</div>
+        <div class="grid-item dua">SYURUQ</div>
+        <div class="grid-item tiga">DZUHUR</div>
+        <div class="grid-item empat">ASHAR</div>
+        <div class="grid-item lima">MAGHRIB</div>
+        <div class="grid-item enam">ISYA</div>
+      </div>
+
+      <div class="Footer">
+        <div id="table-jdw-sholat-Subuh" class="grid-item-2"></div>
+        <div id="table-jdw-sholat-Syuruq" class="grid-item-2"></div>
+        <div id="table-jdw-sholat-Dzuhur" class="grid-item-2"></div>
+        <div id="table-jdw-sholat-Ashar" class="grid-item-2"></div>
+        <div id="table-jdw-sholat-Maghrib" class="grid-item-2"></div>
+        <div id="table-jdw-sholat-Isya" class="grid-item-2"></div>
+      </div>
+      <div class="Mqr">
+        <marquee direction="left" scrollamount="10" class="MQ">
+          BQ City. Jl. Pinus, RT.01/RW.09, Situgede, Kec.Bogor Barat, Kota
+          Bogor, Jawa Barat 16115, ! Waktu Iqomah Comingsoon ðŸ«¡
+        </marquee>
+      </div>
+    </div>
+    <!-- Menambahkan script JavaScript -->
+    <script>
+      function updateClock() {
+        var now = new Date();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+        var timeString =
+          hours.toString().padStart(2, "0") +
+          ":" +
+          minutes.toString().padStart(2, "0") +
+          ":" +
+          seconds.toString().padStart(2, "0");
+        document.getElementById("clock").textContent = timeString;
+      }
+
+      // Panggil updateClock setiap detik
+      setInterval(updateClock, 1000);
+
+      // Panggil updateClock untuk menampilkan waktu saat memuat halaman
+      updateClock();
+
+      function updateClock() {
+        var now = new Date();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+
+        var timeString =
+          hours.toString().padStart(2, "0") +
+          ":" +
+          minutes.toString().padStart(2, "0") +
+          ":" +
+          seconds.toString().padStart(2, "0");
+
+        document.querySelector(".JAM").innerText = timeString;
+      }
+
+      setInterval(auto, 1000);
+      function auto() {
+        let hours = date.getHours(); // untuk mendapatkan jam sekarang
+        let mins = date.getMinutes(); // untuk mendapatkan menit sekarang
+        let secs = date.getSeconds();
+        let a = hours + ":" + mins;
+        if (a > SUBUH && a < SYURUQ) {
+          document.getElementById("SUBUH").style.backgroundColor = "red";
+        } else if (a > SYURUQ && a < ZUHUR) {
+          document.getElementById("syuruq").style.backgroundColor = "red";
+        } else if (a > ZUHUR && a < ASHAR) {
+          document.getElementById("ZUHUR").style.backgroundColor = "red";
+        } else if (a > ASHAR && a < MAGHRIB) {
+          document.getElementById("ASHAR").style.backgroundColor = "red";
+        } else if (a > MAGHRIB && a < ISYA) {
+          document.getElementById("MAGHRIB").style.backgroundColor = "red";
+        } else {
+          document.getElementById("ISYA").style.backgroundColor = "red";
+        }
+      }
+
+      const imgs = document.getElementById("imgs");
+      const img = document.querySelectorAll("#imgs img");
+
+      let idx = 0;
+
+      let interval = setInterval(run, 5000);
+
+      let count = 0;
+
+      function run() {
+        idx++;
+        changeImage();
+      }
+
+      function changeImage() {
+        if (idx > img.length - 1) {
+          idx = 0;
+        } else if (idx < 0) {
+          idx = img.length - 1;
+        }
+
+        for (let i = 0; i < img.length; i++) {
+          if (i == count) {
+            img[i].style.opacity = `1`;
+          } else {
+            img[i].style.opacity = `0`;
+          }
+        }
+
+        console.log(count);
+        count++;
+        if (count >= 3) {
+          count = 0;
+        }
+      }
+
+      function resetint() {
+        clearInterval(interval);
+        interval = setInterval(run, 5000);
+      }
+    </script>
+    <script>
+      window.onload = function () {
+        jadwal_sholat_depag();
+      };
+      new Waktu("#jamJalil");
+    </script>
+    <script src="./jam masjid_files/Carousel.js"></script>
+    <script src="./jam masjid_files/TanggalHijri.js"></script>
+  </body>
+</html>
